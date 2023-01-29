@@ -1,7 +1,18 @@
 import React from "react";
 import { Card, CardBody, CardTitle } from "reactstrap";
-import HomeMenu from "./HomeMenu";
 
+
+/**
+ * Card homepage, displays the welcome message and the number of snacks and drinks
+ *
+* Props:
+ * -snacks - an array of snack objects
+ * -drinks - an array of drink objects
+ *
+ * State: none
+ *
+ *  App -> RouteList -> Home
+ */
 function Home({ snacks, drinks }) {
   return (
     <section className="col-md-8">

@@ -2,6 +2,17 @@ import React from "react";
 import { Navigate, useParams } from "react-router-dom";
 import { Card, CardBody, CardTitle, CardText } from "reactstrap";
 
+/**
+ * Card for individual items, displays the name, recipe, and serving directions
+ *
+ * Props:
+ * -item - an object with data about the item (id, name, description, serve)
+ * -cantFind - string that is the endpoint to reroute to if the url is invalid
+ *
+ * State: none
+ *
+ *  App -> RouteList -> Item
+ */
 function FoodItem({ items, cantFind }) {
   const { id } = useParams();
 

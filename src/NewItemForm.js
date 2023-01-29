@@ -1,10 +1,29 @@
-import { Form, FormGroup, Input, Label, Button, CardBody, Card, CardTitle, CardText } from "reactstrap";
+import {
+  Form,
+  FormGroup,
+  Input,
+  Label,
+  Button,
+  CardBody,
+  Card,
+  CardTitle,
+  CardText
+} from "reactstrap";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import Errors from "./Errors";
 
 
-/** component for rendering a form to add a new item
- * input: {id, name, description, recipe, serve}
+/**
+ * NavItemForm, renders a form for adding a new item
+ *
+ * Props:
+ * - addItem - function to add item to db
+ * - setSnack - adds api response to
+ *
+ * State: none
+ *
+ *  App -> NavBar
  */
 function NewItemForm({ addItem, setSnacks, setDrinks }) {
 
@@ -16,7 +35,7 @@ function NewItemForm({ addItem, setSnacks, setDrinks }) {
     type: "snacks"
   });
 
-  // const [errors, setErrors] = useState([]);
+  const [errors, setErrors] = useState([]);
 
   const navigate = useNavigate();
 
@@ -40,7 +59,7 @@ function NewItemForm({ addItem, setSnacks, setDrinks }) {
       response = await addItem(formData, type);
 
     } catch (err) {
-      // setErrors(err);
+      setErrors(err);
     }
     if (type === "snacks") {
       setSnacks(curr => [...curr, response]);
@@ -50,106 +69,108 @@ function NewItemForm({ addItem, setSnacks, setDrinks }) {
 
 
   return (
-    <Card className="w-50">
-      <CardTitle className="fw-bold text-center">
-        Add an Item
-      </CardTitle>
-      <CardText className="ps-3">Fill in the following fields to add an item.</CardText>
-      <CardBody>
+    <>
+      {errors.length !== 0 && <Errors errors={errors} />}
+      <Card className="w-50">
+        <CardTitle className="fw-bold text-center">
+          Add an Item
+        </CardTitle>
+        <CardText className="ps-3">Fill in the following fields to add an item.</CardText>
+        <CardBody>
 
-        <Form onSubmit={handleSubmit}>
-          <FormGroup>
-            <Label for="id">
-              Id
-            </Label>
-            <Input
-              id="id"
-              name="id"
-              placeholder="id"
-              type="id"
-              onChange={handleChange}
-              value={formData.value}
-            />
-          </FormGroup>
+          <Form onSubmit={handleSubmit}>
+            <FormGroup>
+              <Label for="id">
+                Id
+              </Label>
+              <Input
+                id="id"
+                name="id"
+                placeholder="id"
+                type="id"
+                onChange={handleChange}
+                value={formData.value}
+              />
+            </FormGroup>
 
-          <FormGroup>
-            <Label for="name">
-              Name
-            </Label>
-            <Input
-              id="name"
-              name="name"
-              placeholder="Name"
-              type="name"
-              onChange={handleChange}
-              value={formData.value}
-            />
-          </FormGroup>
-          <FormGroup>
-            <Label for="description">
-              Description
-            </Label>
-            <Input
-              id="description"
-              name="description"
-              placeholder="Description"
-              type="description"
-              onChange={handleChange}
-              value={formData.value}
-            />
-          </FormGroup>
-          <FormGroup>
-            <Label for="recipe">
-              Recipe
-            </Label>
-            <Input
-              id="recipe"
-              name="recipe"
-              placeholder="Recipe"
-              type="recipe"
-              onChange={handleChange}
-              value={formData.value}
-            />
-          </FormGroup>
-          <FormGroup>
-            <Label for="serve">
-              Serve
-            </Label>
-            <Input
-              id="serve"
-              name="serve"
-              placeholder="Serve"
-              type="serve"
-              onChange={handleChange}
-              value={formData.value}
-            />
-          </FormGroup>
-          <FormGroup>
-            <Label for="exampleSelect">
-              Select snack or drink:
-            </Label>
-            <Input
-              id="type"
-              name="type"
-              type="select"
-              onChange={handleChange}
-              value={formData.value}
-            >
-              <option>
-                snacks
-              </option>
-              <option>
-                drinks
-              </option>
-            </Input>
-          </FormGroup>
-          <Button>
-            Add Item
-          </Button>
-        </Form>
-      </CardBody >
-    </Card>
-
+            <FormGroup>
+              <Label for="name">
+                Name
+              </Label>
+              <Input
+                id="name"
+                name="name"
+                placeholder="Name"
+                type="name"
+                onChange={handleChange}
+                value={formData.value}
+              />
+            </FormGroup>
+            <FormGroup>
+              <Label for="description">
+                Description
+              </Label>
+              <Input
+                id="description"
+                name="description"
+                placeholder="Description"
+                type="description"
+                onChange={handleChange}
+                value={formData.value}
+              />
+            </FormGroup>
+            <FormGroup>
+              <Label for="recipe">
+                Recipe
+              </Label>
+              <Input
+                id="recipe"
+                name="recipe"
+                placeholder="Recipe"
+                type="recipe"
+                onChange={handleChange}
+                value={formData.value}
+              />
+            </FormGroup>
+            <FormGroup>
+              <Label for="serve">
+                Serve
+              </Label>
+              <Input
+                id="serve"
+                name="serve"
+                placeholder="Serve"
+                type="serve"
+                onChange={handleChange}
+                value={formData.value}
+              />
+            </FormGroup>
+            <FormGroup>
+              <Label for="exampleSelect">
+                Select snack or drink:
+              </Label>
+              <Input
+                id="type"
+                name="type"
+                type="select"
+                onChange={handleChange}
+                value={formData.value}
+              >
+                <option>
+                  snacks
+                </option>
+                <option>
+                  drinks
+                </option>
+              </Input>
+            </FormGroup>
+            <Button>
+              Add Item
+            </Button>
+          </Form>
+        </CardBody >
+      </Card>
+    </>
   );
 }
 export default NewItemForm;

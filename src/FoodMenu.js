@@ -10,10 +10,18 @@ import {
   ListGroupItem
 } from "reactstrap";
 
+/**
+ * Card for individual items
+ *
+ * Props:
+ * -item - an object with data about the item (id, name, description, ingredients, serve)
+ * -cantFind - string that is the endpoint to reroute to if the url is invalid
+ *
+ * State: none
+ *
+ *  App -> RouteList -> Item
+ */
 function FoodMenu({ items, handle, title }) {
-  console.log("items", items);
-  console.log("handle", handle);
-  console.log("title", title);
   return (
     <section className="col-md-4">
       <Card>

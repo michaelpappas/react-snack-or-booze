@@ -3,6 +3,16 @@ import "./NavBar.css";
 import { NavLink, Link } from "react-router-dom";
 import { Nav, NavItem } from "reactstrap";
 
+
+/**
+ * NavBar, shows links to home, snacks, drinks, and add item
+ *
+ * Props: none
+ *
+ * State: none
+ *
+ *  App -> NavBar
+ */
 function NavBar() {
   return (
     <nav className="Navigation navbar navbar-expand-md">

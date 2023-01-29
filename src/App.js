@@ -1,34 +1,42 @@
 import React, { useState, useEffect } from "react";
 import { BrowserRouter } from "react-router-dom";
 import "./App.css";
-import Home from "./Home";
 import SnackOrBoozeApi from "./Api";
 import NavBar from "./NavBar";
-import { Route, Routes } from "react-router-dom";
-import Menu from "./FoodMenu";
-import Item from "./FoodItem";
 import Errors from "./Errors";
-import NewItemForm from "./NewItemForm";
 import RouteList from "./RouteList.js";
 
+/**
+ * App: Renders Navbar and Routelist
+ *
+ * state:
+ * - drinks - an array of drink objects like (id, name, description, serve)
+ * - snacks - an array of snack objects like (id, name, description, serve)
+ * - errors - array of errors from API to display
+ *
+ * App -> {NavBar, RouteList}
+ */
 function App() {
   const [isLoading, setIsLoading] = useState(true);
   const [errors, setErrors] = useState([]);
   const [snacks, setSnacks] = useState([]);
   const [drinks, setDrinks] = useState([]);
 
+
+  /** fetches items from the api on render and sets them to drinks or snacks
+   * sets isLoading to false upon api response
+   * sets errors if they are caught
+   */
   useEffect(() => {
     async function getItems() {
       try {
         let snacks = await SnackOrBoozeApi.getSnacks();
         let drinks = await SnackOrBoozeApi.getDrinks();
-        console.log(snacks);
-        console.log(drinks);
         setSnacks(snacks);
         setDrinks(drinks);
         setIsLoading(false);
       }
-      catch (err) { //TODO: error causing infinite loop
+      catch (err) {
         setErrors(err);
         setIsLoading(false);
       }
@@ -37,10 +45,9 @@ function App() {
     getItems();
   }, []);
 
-
+  /** adds data from form component to the api and returns api response*/
   async function addItem(data, type) {
     let response = await SnackOrBoozeApi.setItem(data, type);
-    debugger;
     return response;
   }
 
@@ -48,7 +55,6 @@ function App() {
   if (isLoading) {
     return <p>Loading &hellip;</p>;
   }
-
   return (
     <div className="App">
       <BrowserRouter>
