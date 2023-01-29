@@ -19,10 +19,21 @@ import RouteList from "./RouteList.js";
 function App() {
   const [isLoading, setIsLoading] = useState(true);
   const [errors, setErrors] = useState([]);
-  const [snacks, setSnacks] = useState([]);
-  const [drinks, setDrinks] = useState([]);
+  const [snacks, setSnacks] = useState({
+    data: [],
+    handle: "snacks",
+    title: "Snacks",
+    text: "Here is a list of the tasty snack we are currently offering."
+  });
+  const [drinks, setDrinks] = useState({
+    data: [],
+    handle: "drinks",
+    title: "Drinks",
+    text: "You can enjoy any of the following refreshing beverages while visiting the Snack or Booze Cafe."
+  });
 
-
+  console.log(snacks);
+  console.log(drinks);
   /** fetches items from the api on render and sets them to drinks or snacks
    * sets isLoading to false upon api response
    * sets errors if they are caught
@@ -32,8 +43,8 @@ function App() {
       try {
         let snacks = await SnackOrBoozeApi.getSnacks();
         let drinks = await SnackOrBoozeApi.getDrinks();
-        setSnacks(snacks);
-        setDrinks(drinks);
+        setSnacks(curr => ({ ...curr, data: snacks }));
+        setDrinks(curr => ({ ...curr, data: drinks }));
         setIsLoading(false);
       }
       catch (err) {
@@ -47,7 +58,7 @@ function App() {
 
   /** adds data from form component to the api and returns api response*/
   async function addItem(data, type) {
-    let response = await SnackOrBoozeApi.setItem(data, type);
+    let response = await SnackOrBoozeApi.postItem(data, type);
     return response;
   }
 

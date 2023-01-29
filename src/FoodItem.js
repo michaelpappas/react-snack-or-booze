@@ -16,7 +16,7 @@ import { Card, CardBody, CardTitle, CardText } from "reactstrap";
 function FoodItem({ items, cantFind }) {
   const { id } = useParams();
 
-  let item = items.find(item => item.id === id);
+  let item = items.data.find(item => item.id === id);
   if (!item) return <Navigate to={cantFind} />;
 
   return (

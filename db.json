@@ -73,11 +73,18 @@
       "id": "sandwich"
     },
     {
-      "name": "asdf",
-      "description": "asdf",
-      "recipe": "asdf",
-      "serve": "asdf",
-      "id": "asdf"
+      "name": "Ceviche",
+      "description": "raw fish salad thingy",
+      "recipe": "combine fish, lime, and seasoning",
+      "serve": "cold with corn nuts",
+      "id": "ceviche"
+    },
+    {
+      "name": "Hot Dog",
+      "description": "classic all beef",
+      "recipe": "bun and dog",
+      "serve": "on a plate with relish, mustard, ketchup",
+      "id": "hot-dog"
     }
   ]
 }

@@ -24,8 +24,8 @@ function Home({ snacks, drinks }) {
             </h3>
           </CardTitle>
         </CardBody>
-        <div>Snacks - {snacks.length}</div>
-        <div>Drinks - {drinks.length}</div>
+        <div>Snacks - {snacks.data.length}</div>
+        <div>Drinks - {drinks.data.length}</div>
       </Card>
     </section>
   );

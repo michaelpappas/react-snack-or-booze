@@ -57,17 +57,22 @@ function NewItemForm({ addItem, setSnacks, setDrinks }) {
     let response;
     try {
       response = await addItem(formData, type);
-
+      console.log(response);
     } catch (err) {
       setErrors(err);
     }
     if (type === "snacks") {
-      setSnacks(curr => [...curr, response]);
-    } else { setDrinks(curr => [...curr, response]); }
+      console.log(response);
+      setSnacks((curr) => ({ ...curr, data: [...curr.data, response] }));
+
+    } else {
+      console.log(response);
+      setDrinks(curr => ({ ...curr, data: [...curr.data, response] }));
+
+
+    }
     navigate("/");
   }
-
-
   return (
     <>
       {errors.length !== 0 && <Errors errors={errors} />}

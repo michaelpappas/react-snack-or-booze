@@ -27,7 +27,7 @@ class SnackOrBoozeApi {
     return result.data;
   }
 
-  static async setItem(data, type) {
+  static async postItem(data, type) {
     const results = await axios.post(`${BASE_API_URL}/${type}`, data);
     return results.data;
   }
