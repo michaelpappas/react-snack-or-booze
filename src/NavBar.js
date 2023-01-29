@@ -12,7 +12,9 @@ function NavBar() {
         </Link>
         <Nav className="ms-auto" navbar>
           <NavItem>
-            <NavLink to="/snacks">Snacks</NavLink>
+            <NavLink to="/snacks" className="pe-2">Snacks</NavLink>
+            <NavLink to="/drinks" className="pe-2">Drinks</NavLink>
+            <NavLink to="/additem" className="pe-2">Add Item</NavLink>
           </NavItem>
         </Nav>
       </div>
