@@ -6,7 +6,7 @@ import { useNavigate } from "react-router-dom";
 /** component for rendering a form to add a new item
  * input: {id, name, description, recipe, serve}
  */
-function NewItemForm({ addItem }) {
+function NewItemForm({ addItem, setSnacks, setDrinks }) {
 
   const [formData, setFormData] = useState({
     name: "",
@@ -30,14 +30,22 @@ function NewItemForm({ addItem }) {
   }
   /** On submit, calls parent function and redirects to home*/
   async function handleSubmit(evt) {
-    console.log(formData);
     evt.preventDefault();
+
+    const type = formData.type;
+    delete formData.type;
+
+    let response;
     try {
-      await addItem(formData);
-      navigate("/");
+      response = await addItem(formData, type);
+
     } catch (err) {
       // setErrors(err);
     }
+    if (type === "snacks") {
+      setSnacks(curr => [...curr, response]);
+    } else { setDrinks(curr => [...curr, response]); }
+    navigate("/");
   }
 
 

@@ -27,10 +27,7 @@ class SnackOrBoozeApi {
     return result.data;
   }
 
-  static async setItem(data) {
-    const type = data.type;
-    debugger;
-    // delete data.type;
+  static async setItem(data, type) {
     const results = await axios.post(`${BASE_API_URL}/${type}`, data);
     return results.data;
   }

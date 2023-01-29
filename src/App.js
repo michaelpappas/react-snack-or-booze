@@ -8,8 +8,8 @@ import { Route, Routes } from "react-router-dom";
 import Menu from "./FoodMenu";
 import Item from "./FoodItem";
 import Errors from "./Errors";
-import HomeMenu from "./HomeMenu";
 import NewItemForm from "./NewItemForm";
+import RouteList from "./RouteList.js";
 
 function App() {
   const [isLoading, setIsLoading] = useState(true);
@@ -37,9 +37,11 @@ function App() {
     getItems();
   }, []);
 
-  async function addItem(data) {
-    let response = await SnackOrBoozeApi.setItem(data);
-    console.log("success", response);
+
+  async function addItem(data, type) {
+    let response = await SnackOrBoozeApi.setItem(data, type);
+    debugger;
+    return response;
   }
 
 
@@ -53,16 +55,13 @@ function App() {
         <NavBar />
         <main>
           {errors.length !== 0 && <Errors errors={errors} />}
-          <Routes>
-            <Route path="/" element={<Home snacks={snacks} drinks={drinks} />} />
-            <Route path="/snacks" element={<Menu items={snacks} title="Snacks" handle="snacks" />} />
-            <Route path="/snacks/:id" element={<Item items={snacks} cantFind="/snacks" />} />
-            <Route path="/drinks" element={<Menu items={drinks} title="Drinks" handle="drinks" />} />
-            <Route path="/drinks/:id" element={<Item items={drinks} cantFind="/drinks" />} />
-            <Route path="/additem" element={<NewItemForm addItem={addItem} />} />
 
-            <Route path="*" element={<p>Hmmm. I can't seem to find what you want.</p>} />
-          </Routes>
+          <RouteList snacks={snacks}
+            drinks={drinks}
+            addItem={addItem}
+            setDrinks={setDrinks}
+            setSnacks={setSnacks} />
+
         </main>
       </BrowserRouter>
     </div>

@@ -27,6 +27,13 @@
       "description": "Crisp!",
       "recipe": "Open can.",
       "serve": "Immediately."
+    },
+    {
+      "name": "Tamarindo",
+      "description": "tamarind soda",
+      "recipe": "pop the top",
+      "serve": "in a glass",
+      "id": "tamarindo"
     }
   ],
   "snacks": [
@@ -52,28 +59,11 @@
       "serve": "Place on tiny, precious little plates."
     },
     {
-      "id": "tacos",
       "name": "Tacos",
-      "description": "3 meat tacos",
+      "description": "3 tacos",
       "recipe": "tortillas and meat",
-      "serve": "on a plate"
-    },
-    {
-      "id": "yiv276X"
-    },
-    {
-      "id": "lJkSC9h"
-    },
-    {
-      "id": "twQuBR5"
-    },
-    {
-      "name": "asdf",
-      "description": "asdf",
-      "recipe": "asdf",
-      "serve": "asdf",
-      "type": "snacks",
-      "id": "hamburger"
+      "serve": "on a plate",
+      "id": "tacos"
     }
   ]
 }

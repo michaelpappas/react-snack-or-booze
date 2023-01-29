@@ -1,6 +1,6 @@
 import { NavLink } from "react-router-dom";
 
-function HomeMenu({ items, title, handle }) {
+function CategoryMenu({ items, title, handle }) {
   return (
     <div>
       <NavLink to={`/${handle}`}><h2>{title}</h2></NavLink>
@@ -12,4 +12,4 @@ function HomeMenu({ items, title, handle }) {
   );
 }
 
-export default HomeMenu;
+export default CategoryMenu;
