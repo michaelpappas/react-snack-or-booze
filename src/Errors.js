@@ -9,12 +9,7 @@ import { Alert } from "reactstrap";
  */
 function Errors({ errors }) {
   return (
-    // <div className="alert alert-danger" role="alert">
-    //   {errors.map(error => <div>{error}</div>)}
-    // </div>
-
     <div> {errors.map((error, i) => <Alert color="danger" key={i}>{error}</Alert>)}</div>
-
   );
 }
 

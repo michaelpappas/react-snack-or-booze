@@ -32,8 +32,6 @@ function App() {
     text: "You can enjoy any of the following refreshing beverages while visiting the Snack or Booze Cafe."
   });
 
-  console.log(snacks);
-  console.log(drinks);
   /** fetches items from the api on render and sets them to drinks or snacks
    * sets isLoading to false upon api response
    * sets errors if they are caught

@@ -3,6 +3,7 @@ import Item from "./FoodItem";
 import NewItemForm from "./NewItemForm";
 import { Route, Routes } from "react-router-dom";
 import CategoryMenu from "./CategoryMenu";
+import NotFound from "./NotFound";
 
 
 /**
@@ -27,7 +28,7 @@ function RouteList({ snacks, drinks, addItem, setDrinks, setSnacks }) {
       <Route path="/drinks/:id" element={<Item items={drinks} cantFind="/drinks" />} />
       <Route path="/additem" element={<NewItemForm addItem={addItem} setDrinks={setDrinks} setSnacks={setSnacks} />} />
 
-      <Route path="*" element={<p>Hmmm. I can't seem to find what you want.</p>} />
+      <Route path="*" element={<NotFound />} />
     </Routes>
   );
 }
